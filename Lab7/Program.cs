@@ -16,65 +16,34 @@ namespace Lab7
             //validates name
             Console.Write("Enter your name: ");
             Name = Console.ReadLine();
-            if (Regex.IsMatch(Name, @"^[A-Z]{1}[A-Za-z]{0,29}$"))
-            {
-                Console.WriteLine($"{Name} is a valid name.");
-            }
-            else
-            {
-                Console.WriteLine($"{Name} is not a valid name.");
-            }
+            Console.WriteLine(Verify(Name, @"^[A-Z]{1}[A-Za-z]{0,29}$", "Error- Please enter a valid name: ", "That is a valid Name"));
 
             //validates email
             Console.Write("Enter your email: ");
             Email = Console.ReadLine();
-            if (Regex.IsMatch(Email, @"^[A-Za-z\d]{5,30}@[a-z\d]{5,10}[.][a-z\d]{2,3}$"))
-            {
-                Console.WriteLine($"{Email} is a valid email.");
-            }
-            else
-            {
-                Console.WriteLine($"{Email} is not a valid email.");
-            }
+            Console.WriteLine(Verify(Email, @"^[A-Za-z\d]{5,30}@[a-z\d]{5,10}[.][a-z\d]{2,3}$", "Error- Please enter a valid email: ", "That is a valid Email"));
 
             //validates phone num
             Console.Write("Enter your phone number (###-###-####): ");
             PhoneNumber = Console.ReadLine();
-            if (Regex.IsMatch(PhoneNumber, @"^\d{3}-\d{3}-\d{4}$"))
-            {
-                Console.WriteLine($"{PhoneNumber} is a valid phone number");
-            }
-            else
-            {
-                Console.WriteLine($"{PhoneNumber} is not a valid phone number");
-            }
+            Console.WriteLine(Verify(PhoneNumber, @"^\d{3}-\d{3}-\d{4}$", "Error- Please enter a valid phone number: ", "That is a valid Phone Number"));
 
             //validates dates
             Console.Write("Enter your birthdate (mm/dd/yyyy): ");
             Date = Console.ReadLine();
-            if (Regex.IsMatch(Date, @"^\d{2}/\d{2}/\d{4}$"))
-            {
-                Console.WriteLine($"{Date} is a valid date.");
-            }
-            else
-            {
-                Console.WriteLine($"{Date} is not a valid date.");
-            }
+            Console.WriteLine(Verify(Date, @"^\d{2}/\d{2}/\d{4}$", "Error- Please enter a valid date: ", "That is a valid Date"));
             Console.ReadKey();
         }
         
-        //public static string verifyName(string Name)
-        //{
-        //    if (Regex.IsMatch(Name, @"^[A-Z]{1}[A-Za-z]{0,29}$"))
-        //    {
-        //        Console.WriteLine("Correct!");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Wrong!");
-        //    }
-            
-        //    }
+        public static string Verify (string input, string verification, string Message, string Message2)
+        {
+            while (!Regex.IsMatch(input, verification))
+            {
+                Console.Write(Message);
+                input = Console.ReadLine();
+            }
+            return Message2;
+        }
 
     }
 }
